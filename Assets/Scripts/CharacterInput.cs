@@ -11,12 +11,16 @@ public class CharacterInput : MonoBehaviour
 	public float groundDamping = 20f; // how fast do we change direction? higher means faster
 	public float inAirDamping = 5f;
 	public float jumpHeight = 3f;
-	[HideInInspector]
+    public float jumpHoldAddition = 1.5f;
+    public float jumpHoldDuration = 2f;
+    [HideInInspector]
 	private float normalizedHorizontalSpeed = 0;
 	private CharacterController2D _controller;
 	private RaycastHit2D _lastControllerColliderHit;
     private GameController _gameController;
 	private Vector3 _velocity;
+    private bool _ableToJump;
+    private bool _jumpKeyHold;
 
 
 	void Awake()
@@ -45,20 +49,22 @@ public class CharacterInput : MonoBehaviour
     // When hitting trigger zones, either proceed to next level or respawn the player
 	void onTriggerEnterEvent( Collider2D col )
 	{
-		Debug.Log( "onTriggerEnterEvent: " + col.gameObject.name );
+		//Debug.Log( "onTriggerEnterEvent: " + col.gameObject.name );
         if(col.gameObject.GetComponent<ColliderInfo>().colliderType == 0)
         {
             Debug.Log("Next stage");
             Destroy(this.gameObject);
-            _gameController.camera.GetComponent<SmoothFollow>().playerSet = false;
             _gameController.NextStage();
         }
-        if(col.gameObject.GetComponent<ColliderInfo>().colliderType == 1)
+        if(col.gameObject.GetComponent<ColliderInfo>().colliderType == 1 || col.gameObject.GetComponent<ColliderInfo>().colliderType == 2)
         {
             Debug.Log("Reset stage");
             Destroy(this.gameObject);
-            _gameController.camera.GetComponent<SmoothFollow>().playerSet = false;
             _gameController.ReloadStage();
+        }
+        if(col.gameObject.GetComponent<ColliderInfo>().colliderType == 3)
+        {
+            col.gameObject.GetComponent<ColliderInfo>().TriggerPlatformMove();
         }
 	}
 
@@ -67,6 +73,11 @@ public class CharacterInput : MonoBehaviour
 	{
 		Debug.Log( "onTriggerExitEvent: " + col.gameObject.name );
 	}
+
+    void EndJumpHold()
+    {
+        _jumpKeyHold = false;
+    }
 
 
 
@@ -110,10 +121,17 @@ public class CharacterInput : MonoBehaviour
 
 
 		// we can only jump whilst grounded
-		if( _controller.isGrounded && (Input.GetKeyDown( KeyCode.UpArrow ) || Input.GetKey(KeyCode.Space)) )
+		if( _controller.isGrounded && (Input.GetKeyDown( KeyCode.UpArrow ) || Input.GetKeyDown(KeyCode.Space)) )
 		{
-			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
-		}
+            _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity);
+            _jumpKeyHold = true;
+            Invoke("EndJumpHold", jumpHoldDuration);
+        }
+        //Holding jump key after jump increases jump distance
+        else if (!_controller.isGrounded && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && _jumpKeyHold)
+        {
+            _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity * jumpHoldAddition);
+        }
 
 
 		// apply horizontal speed smoothing it. dont really do this with Lerp. Use SmoothDamp or something that provides more control

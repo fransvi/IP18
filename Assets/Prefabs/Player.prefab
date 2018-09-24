@@ -104,7 +104,9 @@ MonoBehaviour:
   runSpeed: 6
   groundDamping: 20
   inAirDamping: 5
-  jumpHeight: 2.5
+  jumpHeight: 0.5
+  jumpHoldAddition: 1.33
+  jumpHoldDuration: 0.33
 --- !u!114 &114678166391378952
 MonoBehaviour:
   m_ObjectHideFlags: 1

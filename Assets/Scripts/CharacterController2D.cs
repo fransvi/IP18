@@ -55,19 +55,15 @@ public class CharacterController2D : MonoBehaviour
 	public event Action<Collider2D> onTriggerExitEvent;
 
 
-	/// <summary>
 	/// when true, one way platforms will be ignored when moving vertically for a single frame
-	/// </summary>
 	public bool ignoreOneWayPlatformsThisFrame;
 
 	[SerializeField]
 	[Range( 0.001f, 0.3f )]
 	float _skinWidth = 0.02f;
 
-	/// <summary>
 	/// defines how far in from the edges of the collider rays are cast from. If cast with a 0 extent it will often result in ray hits that are
 	/// not desired (for example a foot collider casting horizontally from directly on the surface can result in a hit)
-	/// </summary>
 	public float skinWidth
 	{
 		get { return _skinWidth; }
@@ -79,40 +75,26 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	/// <summary>
 	/// mask with all layers that the player should interact with
-	/// </summary>
 	public LayerMask platformMask = 0;
 
-	/// <summary>
 	/// mask with all layers that trigger events should fire when intersected
-	/// </summary>
 	public LayerMask triggerMask = 0;
 
-	/// <summary>
 	/// mask with all layers that should act as one-way platforms. Note that one-way platforms should always be EdgeCollider2Ds. This is because it does not support being
 	/// updated anytime outside of the inspector for now.
-	/// </summary>
 	[SerializeField]
 	LayerMask oneWayPlatformMask = 0;
 
-	/// <summary>
 	/// the max slope angle that the CC2D can climb
-	/// </summary>
-	/// <value>The slope limit.</value>
 	[Range( 0f, 90f )]
 	public float slopeLimit = 30f;
 
-	/// <summary>
 	/// the threshold in the change in vertical movement between frames that constitutes jumping
-	/// </summary>
-	/// <value>The jumping threshold.</value>
 	public float jumpingThreshold = 0.07f;
 
 
-	/// <summary>
 	/// curve for multiplying speed based on slope (negative = down slope and positive = up slope)
-	/// </summary>
 	public AnimationCurve slopeSpeedMultiplier = new AnimationCurve( new Keyframe( -90f, 1.5f ), new Keyframe( 0f, 1f ), new Keyframe( 90f, 0f ) );
 
 	[Range( 2, 20 )]
@@ -120,11 +102,8 @@ public class CharacterController2D : MonoBehaviour
 	[Range( 2, 20 )]
 	public int totalVerticalRays = 4;
 
-
-	/// <summary>
 	/// this is used to calculate the downward ray that is cast to check for slopes. We use the somewhat arbitrary value 75 degrees
 	/// to calculate the length of the ray that checks for slopes.
-	/// </summary>
 	float _slopeLimitTangent = Mathf.Tan( 75f * Mathf.Deg2Rad );
 
 
@@ -144,20 +123,14 @@ public class CharacterController2D : MonoBehaviour
 	const float kSkinWidthFloatFudgeFactor = 0.001f;
 
 
-	/// <summary>
 	/// holder for our raycast origin corners (TR, TL, BR, BL)
-	/// </summary>
 	CharacterRaycastOrigins _raycastOrigins;
 
-	/// <summary>
 	/// stores our raycast hit during movement
-	/// </summary>
 	RaycastHit2D _raycastHit;
 
-	/// <summary>
 	/// stores any raycast hits that occur this frame. we have to store them in case we get a hit moving
 	/// horizontally and vertically so that we can send the events after all collision state is set
-	/// </summary>
 	List<RaycastHit2D> _raycastHitsThisFrame = new List<RaycastHit2D>( 2 );
 
 	// horizontal/vertical movement data
@@ -220,11 +193,8 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	/// <summary>
 	/// attempts to move the character to position + deltaMovement. Any colliders in the way will cause the movement to
 	/// stop when run into.
-	/// </summary>
-	/// <param name="deltaMovement">Delta movement.</param>
 	public void move( Vector3 deltaMovement )
 	{
 		// save off our current grounded state which we will use for wasGroundedLastFrame and becameGroundedThisFrame
@@ -278,9 +248,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	/// <summary>
 	/// moves directly down until grounded
-	/// </summary>
 	public void warpToGrounded()
 	{
 		do
@@ -290,10 +258,8 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	/// <summary>
 	/// this should be called anytime you have to modify the BoxCollider2D at runtime. It will recalculate the distance between the rays used for collision detection.
 	/// It is also used in the skinWidth setter in case it is changed at runtime.
-	/// </summary>
 	public void recalculateDistanceBetweenRays()
 	{
 		// figure out the distance between our rays in both directions
@@ -308,12 +274,9 @@ public class CharacterController2D : MonoBehaviour
 
 	
 
-	/// <summary>
 	/// resets the raycastOrigins to the current extents of the box collider inset by the skinWidth. It is inset
 	/// to avoid casting a ray from a position directly touching another collider which results in wonky normal data.
-	/// </summary>
-	/// <param name="futurePosition">Future position.</param>
-	/// <param name="deltaMovement">Delta movement.</param>
+
 	void primeRaycastOrigins()
 	{
 		// our raycasts need to be fired from the bounds inset by the skinWidth
@@ -326,12 +289,6 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	/// <summary>
-	/// we have to use a bit of trickery in this one. The rays must be cast from a small distance inside of our
-	/// collider (skinWidth) to avoid zero distance rays which will get the wrong normal. Because of this small offset
-	/// we have to increase the ray distance skinWidth then remember to remove skinWidth from deltaMovement before
-	/// actually moving the player
-	/// </summary>
 	void moveHorizontally( ref Vector3 deltaMovement )
 	{
 		var isGoingRight = deltaMovement.x > 0;
@@ -388,12 +345,8 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	/// <summary>
 	/// handles adjusting deltaMovement if we are going up a slope.
-	/// </summary>
-	/// <returns><c>true</c>, if horizontal slope was handled, <c>false</c> otherwise.</returns>
-	/// <param name="deltaMovement">Delta movement.</param>
-	/// <param name="angle">Angle.</param>
+
 	bool handleHorizontalSlope( ref Vector3 deltaMovement, float angle )
 	{
 		// disregard 90 degree angles (walls)
@@ -503,12 +456,9 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
-
-	/// <summary>
 	/// checks the center point under the BoxCollider2D for a slope. If it finds one then the deltaMovement is adjusted so that
 	/// the player stays grounded and the slopeSpeedModifier is taken into account to speed up movement.
-	/// </summary>
-	/// <param name="deltaMovement">Delta movement.</param>
+
 	private void handleVerticalSlope( ref Vector3 deltaMovement )
 	{
 		// slope check from the center of our collider
