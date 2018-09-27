@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 114678166391378952}
   - component: {fileID: 61679468895411372}
   - component: {fileID: 50374889992193368}
-  - component: {fileID: 212625485781703602}
   - component: {fileID: 114659279503312384}
+  - component: {fileID: 212667650377293232}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1390999453787690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.3820906, y: 2.861172, z: -15.089228}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 8.9, y: 51.1, z: -5}
+  m_LocalScale: {x: 2.275981, y: 3.39544, z: 2.382265}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,18 +76,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: -0.00084000826, y: 0.0016961098}
+  m_Offset: {x: -0.061930835, y: -0.18985641}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
-    newSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 4.06, y: 5.42}
+    newSize: {x: 4.06, y: 5.42}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5082246, y: 0.49636626}
+  m_Size: {x: 1.9380094, y: 4.009164}
   m_EdgeRadius: 0
 --- !u!114 &114659279503312384
 MonoBehaviour:
@@ -100,13 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287bd687f56507641af80e45cf03c90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -25
-  runSpeed: 6
+  gravity: -250
+  runSpeed: 45
   groundDamping: 20
   inAirDamping: 5
-  jumpHeight: 0.5
-  jumpHoldAddition: 1.33
-  jumpHoldDuration: 0.33
+  jumpHeight: 6
+  jumpHoldAddition: 1.15
+  jumpHoldDuration: 0.15
 --- !u!114 &114678166391378952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,7 +166,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   totalHorizontalRays: 5
   totalVerticalRays: 3
---- !u!212 &212625485781703602
+--- !u!212 &212667650377293232
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -201,12 +201,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6fc3d36c5c1960f418e3e6def60e4e74, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1473582a3e867e4ea4898ac8f9853e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 4.06, y: 5.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
