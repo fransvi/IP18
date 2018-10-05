@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour {
     public GameObject spawnPoint;
     public GameObject playerPrefab;
     public GameObject[] stages;
+    public Camera camera;
+    public GameObject pauseCanvas;
+    public GameObject startCanvas;
 
     private int currentStage;
 
@@ -45,6 +48,7 @@ public class GameController : MonoBehaviour {
         Debug.Log("Current stage" + currentStage);
         spawnPoint = stages[currentStage].transform.GetChild(0).gameObject;
         GameObject player = (GameObject)Instantiate(playerPrefab, spawnPoint.gameObject.transform.position, spawnPoint.gameObject.transform.rotation);
+        camera.GetComponent<SmoothFollow>().SetPlayer(player.gameObject);
 
     }
 }
