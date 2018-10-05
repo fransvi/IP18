@@ -28,7 +28,7 @@ public class PlatformSlider : MonoBehaviour {
 		rotation = Quaternion.EulerAngles(0,0,OriginalRotation + (DeltaRotation * Phase));
 		transform.rotation = rotation;
 
-		if(Direction == true) Phase += Time.deltaTime;
+		if(Direction == true) Phase += Time.deltaTime * Speed;
 		else Phase -= Time.deltaTime * Speed;
 
 		if(Phase >= (1-Mathf.Epsilon) || Phase <= Mathf.Epsilon) {
