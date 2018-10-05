@@ -21,15 +21,16 @@ public class CharacterInput : MonoBehaviour
 	private Vector3 _velocity;
     private bool _ableToJump;
     private bool _jumpKeyHold;
+    private Animator _animator;
 
-
-	void Awake()
+    void Awake()
 	{
 		_controller = GetComponent<CharacterController2D>();
         _gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        _animator = GetComponent<Animator>();
 
-		// listen to some events for illustration purposes
-		_controller.onControllerCollidedEvent += onControllerCollider;
+        // listen to some events for illustration purposes
+        _controller.onControllerCollidedEvent += onControllerCollider;
 		_controller.onTriggerEnterEvent += onTriggerEnterEvent;
 		_controller.onTriggerExitEvent += onTriggerExitEvent;
 	}
@@ -81,13 +82,19 @@ public class CharacterInput : MonoBehaviour
 
 
 
-	// Todo animations
 	void Update()
 	{
-		if( _controller.isGrounded )
+        if( _controller.isGrounded ) {
 			_velocity.y = 0;
+            if (_animator.GetBool("jump")){
+                _animator.SetBool("jump", false);
+            }
+        }
+        else {
+            _animator.SetBool("walk", false);
+        }
 
-		if( Input.GetKey( KeyCode.RightArrow ) || Input.GetKey(KeyCode.D) )
+        if ( Input.GetKey( KeyCode.RightArrow ) || Input.GetKey(KeyCode.D) )
 		{
 			normalizedHorizontalSpeed = 1;
 			if( transform.localScale.x < 0f )
@@ -95,7 +102,7 @@ public class CharacterInput : MonoBehaviour
 
 			if( _controller.isGrounded)
             {
-
+                _animator.SetBool("walk", true);
             }
 		}
 		else if( Input.GetKey( KeyCode.LeftArrow ) || Input.GetKey(KeyCode.A))
@@ -106,7 +113,7 @@ public class CharacterInput : MonoBehaviour
 
 			if( _controller.isGrounded)
             {
-
+                _animator.SetBool("walk", true);
             }
 		}
 		else
@@ -115,7 +122,7 @@ public class CharacterInput : MonoBehaviour
 
 			if( _controller.isGrounded)
             {
-
+                _animator.SetBool("walk", false);
             }
 		}
 
@@ -126,6 +133,7 @@ public class CharacterInput : MonoBehaviour
             _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity);
             _jumpKeyHold = true;
             Invoke("EndJumpHold", jumpHoldDuration);
+            _animator.SetBool("jump", true);
         }
         //Holding jump key after jump increases jump distance
         else if (!_controller.isGrounded && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && _jumpKeyHold)
