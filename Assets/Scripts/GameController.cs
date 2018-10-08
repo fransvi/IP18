@@ -14,10 +14,12 @@ public class GameController : MonoBehaviour {
     private int currentStage;
 
     // Use this for initialization
-    void Start () {
+
+    public void StartGame()
+    {
         RespawnPlayer();
         currentStage = 0;
-	}
+    }
 
     public void ReloadStage()
     {
