@@ -25,7 +25,7 @@ public class PlatformSlider : MonoBehaviour {
 		Quaternion rotation;
 
 		transform.position = Vector3.Lerp(OriginalPosition, OriginalPosition + DeltaPosition, Phase);
-		rotation = Quaternion.EulerAngles(0,0,OriginalRotation + (DeltaRotation * Phase));
+		rotation = Quaternion.EulerAngles(0, 0, OriginalRotation + (DeltaRotation * Phase));
 		transform.rotation = rotation;
 
 		if(Direction == true) Phase += Time.deltaTime * Speed;
