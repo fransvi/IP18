@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+    public List<ActivationSequenceInfo> ActivationSequences;
+    public List<GameObject> DynamicBlocks;
+    public List<float> BlockTimeCounter;
+    public List<int> BlockFrameCounter;
+
     public GameObject spawnPoint;
     public GameObject playerPrefab;
     public GameObject[] stages;
@@ -13,16 +18,67 @@ public class GameController : MonoBehaviour {
 
     private int currentStage;
 
-    // Use this for initialization
+    public void UpdateActivationSequences()
+	{
+		GameObject [] allDynamicBlocks = GameObject.FindGameObjectsWithTag("Dynamic Block");
+		
+		List<GameObject> activeDynamicBlocks = new List<GameObject>();
+
+		foreach(GameObject g in allDynamicBlocks)
+		{
+			if(g.activeInHierarchy)
+			{
+		        ActivationSequenceInfo i = g.GetComponent<ActivationSequenceInfo>();
+				ActivationSequences.Add(i);
+                DynamicBlocks.Add(g);
+                BlockTimeCounter.Add(0.0f);
+                BlockFrameCounter.Add(0);
+			}
+		}
+        Debug.Log("Updated activation sequences");
+	}
+
+    private void PollActivationSequences()
+    {
+        for(int i = 0; i < ActivationSequences.Count; ++i)
+        {
+            float deltaTime = Time.deltaTime;
+            BlockTimeCounter[i] += deltaTime;
+            if(ActivationSequences[i].SecondsPerFrame < BlockTimeCounter[i])
+            {
+                ++BlockFrameCounter[i];
+                BlockTimeCounter[i] = 0.0f;
+                bool [] sequence = ActivationSequences[i].Sequence;
+                if(BlockFrameCounter[i] >= sequence.Length)
+                {
+                    BlockFrameCounter[i] =  0;
+                }
+                //DynamicBlocks[i].SetActive(false);
+                DynamicBlocks[i].SetActive(sequence[BlockFrameCounter[i]]);
+            }
+        }
+    }
+
+    void Update()
+    {
+        PollActivationSequences();
+    }
 
     public void StartGame()
     {
+        UpdateActivationSequences();
         RespawnPlayer();
         currentStage = 0;
     }
 
+    public void Start()
+    {
+        UpdateActivationSequences();
+    }
+
     public void ReloadStage()
     {
+        UpdateActivationSequences();
         RespawnPlayer();
     }
 
@@ -41,6 +97,7 @@ public class GameController : MonoBehaviour {
                 stages[i].SetActive(false);
             }
         }
+        UpdateActivationSequences();
         RespawnPlayer();
     }
 
