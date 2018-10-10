@@ -13,7 +13,6 @@ public class TriggerBlock : MonoBehaviour {
         if (!hasTriggered)
         {
             Debug.Log("Triggerplatformove");
-            triggeredBlock.GetComponent<ColliderInfo>()._platformMoving = true;
         }
         hasTriggered = true;
     }

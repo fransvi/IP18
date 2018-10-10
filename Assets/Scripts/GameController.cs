@@ -13,8 +13,9 @@ public class GameController : MonoBehaviour {
     public GameObject playerPrefab;
     public GameObject[] stages;
     public Camera camera;
-    public GameObject pauseCanvas;
-    public GameObject startCanvas;
+
+    private bool playerAlive = false;
+    private GameObject currentPlayer;
 
     private int currentStage;
 
@@ -75,6 +76,11 @@ public class GameController : MonoBehaviour {
     {
         UpdateActivationSequences();
     }
+    public void PlayerDead()
+    {
+        playerAlive = false;
+        //currentPlayer.GetComponent<ParticleSystem>().Play();
+    }
 
     public void ReloadStage()
     {
@@ -86,6 +92,7 @@ public class GameController : MonoBehaviour {
     public void NextStage()
     {
         currentStage += 1;
+        Debug.Log("Stage change to " + currentStage);
         for(int i = 0; i < stages.Length; ++i)
         {
             if(i == currentStage)
@@ -104,10 +111,16 @@ public class GameController : MonoBehaviour {
     // Respawn the player and adjust the camera back to player
     public void RespawnPlayer()
     {
-        Debug.Log("Current stage" + currentStage);
-        spawnPoint = stages[currentStage].transform.GetChild(0).gameObject;
-        GameObject player = (GameObject)Instantiate(playerPrefab, spawnPoint.gameObject.transform.position, spawnPoint.gameObject.transform.rotation);
-        camera.GetComponent<SmoothFollow>().SetPlayer(player.gameObject);
+        if (!playerAlive)
+        {
+            spawnPoint = stages[currentStage].transform.GetChild(0).gameObject;
+            GameObject player = (GameObject)Instantiate(playerPrefab, spawnPoint.gameObject.transform.position, spawnPoint.gameObject.transform.rotation);
+            currentPlayer = player;
+            camera.GetComponent<SmoothFollow>().SetPlayer(player.gameObject);
+            camera.GetComponent<SmoothFollow>().SetCameraLimits(currentStage);
+            playerAlive = true;
+        }
+
 
     }
 }

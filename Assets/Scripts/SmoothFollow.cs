@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using Char2DController;
+
 
 
 public class SmoothFollow : MonoBehaviour
@@ -15,13 +15,15 @@ public class SmoothFollow : MonoBehaviour
 
     // variables used to limit camera movement point 
 
+        private float[] LEVEL1LIMITS = new float[4] { 120,285,60, 55};
+        private float[] LEVEL2LIMITS = new float[4] { 120,450,60,-55};
+
     public float leftLimit;
     public float rightLimit;
     public float topLimit;
     public float bottomLimit;
     Vector3 originalCameraPosition;
 
-    private CharacterController2D _playerController;
 	private Vector3 _smoothDampVelocity;
 	
     //Set active player prefab for the camera
@@ -29,8 +31,27 @@ public class SmoothFollow : MonoBehaviour
     {
         target = player.transform;
         transform = gameObject.transform;
-        _playerController = target.GetComponent<CharacterController2D>();
         playerSet = true;
+    }
+
+    public void SetCameraLimits(int i)
+    {
+        if(i == 1 || i == 2)
+        {
+            leftLimit = LEVEL1LIMITS[0];
+            rightLimit = LEVEL1LIMITS[1];
+            topLimit = LEVEL1LIMITS[2];
+            bottomLimit = LEVEL1LIMITS[3];
+        }
+        else if(i == 0)
+        {
+            leftLimit = LEVEL2LIMITS[0];
+            rightLimit = LEVEL2LIMITS[1];
+            topLimit = LEVEL2LIMITS[2];
+            bottomLimit = LEVEL2LIMITS[3];
+        }
+
+
     }
 	
 	
