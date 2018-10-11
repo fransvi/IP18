@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1390999453787690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 240.87021, y: 54.060463, z: 0}
+  m_LocalPosition: {x: 14.382492, y: 46.560562, z: 0}
   m_LocalScale: {x: 2.4056208, y: 2.784786, z: 1.3759336}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.061930835, y: 1.827765}
+  m_Offset: {x: -0.08544165, y: 1.5840449}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -92,7 +92,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.3814583}
+  m_Size: {x: 0.6708448, y: 2.8940182}
   m_EdgeRadius: 0
 --- !u!95 &95343499114789810
 Animator:
@@ -160,11 +160,11 @@ MonoBehaviour:
   timeToJumpApex: 0.4
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
-  moveSpeed: 45
-  wallJumpClimb: {x: 56, y: 78}
+  moveSpeed: 55
+  wallJumpClimb: {x: 44, y: 100}
   wallJumpOff: {x: 33, y: 33}
   wallLeap: {x: 67, y: 88}
-  wallSlideSpeedMax: 3
+  wallSlideSpeedMax: 5
   wallStickTime: 0.25
   gravity: 0
 --- !u!114 &114830609920949150
