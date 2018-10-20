@@ -7,8 +7,8 @@ public class Parallax : MonoBehaviour {
 	public float ParallaxSmoothing = 1f;
 
 	private GameObject[] allParallaxBackgrounds;
-	private List<GameObject> currentParallaxBackgrounds;
-	private List<float> currentParallaxBackgroundDepth;
+	public List<GameObject> currentParallaxBackgrounds;
+	public List<float> currentParallaxBackgroundDepth;
 	private ParallaxInfo parallaxInformation;
 	private Transform camera;
 	private Vector3 lastCameraPosition;
@@ -54,7 +54,7 @@ public class Parallax : MonoBehaviour {
 			else direction = Vector3.zero;
 			float distance = Vector3.Distance(lastCameraPosition, camera.position) * currentParallaxBackgroundDepth[i];
 			Vector3 targetPosition = currentParallaxBackgrounds[i].transform.position + (direction * distance);
-			//currentParallaxBackgrounds[i].transform.position = Vector3.Lerp(currentParallaxBackgrounds[i].transform.position, targetPosition, ParallaxSmoothing * Time.deltaTime);
+			currentParallaxBackgrounds[i].transform.position = Vector3.Lerp(currentParallaxBackgrounds[i].transform.position, targetPosition, ParallaxSmoothing * Time.deltaTime);
 			currentParallaxBackgrounds[i].transform.position = targetPosition;
 		}
 		lastCameraPosition = camera.position;
