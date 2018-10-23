@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour {
     void Update()
     {
         PollActivationSequences();
+        
     }
 
     public void StartGame()
@@ -78,8 +79,21 @@ public class GameController : MonoBehaviour {
     }
     public void PlayerDead()
     {
-        playerAlive = false;
+        StartCoroutine(WaitForRespawn());
         //currentPlayer.GetComponent<ParticleSystem>().Play();
+    }
+
+
+    //Transition and camera adjustment when player dies.
+    IEnumerator WaitForRespawn()
+    {
+        playerAlive = false;
+        GetComponent<AutoFade>().BeginFade(1);
+        yield return new WaitForSeconds(0.5f);
+        camera.GetComponent<SmoothFollow>().SetPlayer(spawnPoint);
+        GetComponent<AutoFade>().BeginFade(-1);
+        yield return new WaitForSeconds(0.5f);
+        RespawnPlayer();
     }
 
     public void ReloadStage()
@@ -87,6 +101,8 @@ public class GameController : MonoBehaviour {
         UpdateActivationSequences();
         RespawnPlayer();
     }
+
+
 
     // Set active the current stage player is in
     public void NextStage()

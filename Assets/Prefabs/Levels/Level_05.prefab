@@ -3392,7 +3392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1951812094123340
 GameObject:
   m_ObjectHideFlags: 1
@@ -5304,7 +5304,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1732848977781892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.4, y: 56.9, z: 0}
+  m_LocalPosition: {x: 14.4, y: 49.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4366740548933108}
@@ -7542,10 +7542,10 @@ PolygonCollider2D:
       - {x: 594.1432, y: 87.8875}
     - - {x: 351.74384, y: 84.19009}
       - {x: 352.10626, y: 64.560684}
-      - {x: 555, y: 0}
-      - {x: 555, y: 0}
-      - {x: 555, y: 0}
-      - {x: 555, y: 0}
+      - {x: 0, y: 0}
+      - {x: 0, y: 0}
+      - {x: 0, y: 0}
+      - {x: 0, y: 0}
       - {x: 352.86127, y: 64.572975}
       - {x: 352.33365, y: 84.20417}
     - - {x: 0, y: 0}
@@ -12492,10 +12492,10 @@ MonoBehaviour:
   fillCollider: 0
   pathData:
     _points:
-    - {x: 15.030243, y: -5}
-    - {x: 15.030243, y: 5}
-    - {x: -5, y: 5}
-    - {x: -5, y: -5}
+    - {x: 17.393127, y: -5.393816}
+    - {x: 16.80481, y: 7.096897}
+    - {x: -5.529541, y: 7.005459}
+    - {x: -5.5907288, y: -5.196909}
     _pointControls:
     - radius: 1
       controlNext: {x: 0, y: 0}

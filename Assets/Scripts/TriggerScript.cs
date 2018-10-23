@@ -25,7 +25,7 @@ public class TriggerScript : MonoBehaviour {
             {
                 Destroy(clone);
             }
-            gameController.GetComponent<GameController>().RespawnPlayer();
+            gameController.GetComponent<GameController>().PlayerDead();
             }
 
 

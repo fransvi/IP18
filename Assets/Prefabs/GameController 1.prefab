@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4504309729682384}
   - component: {fileID: 114200359252849102}
+  - component: {fileID: 114858901110222300}
   m_Layer: 0
   m_Name: GameController 1
   m_TagString: Untagged
@@ -63,3 +64,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   camera: {fileID: 0}
+--- !u!114 &114858901110222300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1268323128514958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466baf65dfe5bf14badd793e5a74a8cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeOutTexture: {fileID: 2800000, guid: 29913da23eac27b4cbc985139b59362d, type: 3}
+  _fadeSpeed: 1
