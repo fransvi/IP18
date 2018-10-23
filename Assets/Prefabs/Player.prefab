@@ -155,18 +155,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319261ef5850a544389b6688a72eccff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 35
-  minJumpHeight: 6
+  maxJumpHeight: 16
+  minJumpHeight: 1
   timeToJumpApex: 0.4
-  accelerationTimeAirborne: 0.2
+  accelerationTimeAirborne: 0.1
   accelerationTimeGrounded: 0.1
-  moveSpeed: 55
+  moveSpeed: 35
   wallJumpClimb: {x: 44, y: 100}
   wallJumpOff: {x: 33, y: 33}
   wallLeap: {x: 67, y: 88}
   wallSlideSpeedMax: 5
   wallStickTime: 0.25
-  gravity: 0
+  gravity: -200
 --- !u!114 &114830609920949150
 MonoBehaviour:
   m_ObjectHideFlags: 1

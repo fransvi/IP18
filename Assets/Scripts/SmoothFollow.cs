@@ -15,8 +15,10 @@ public class SmoothFollow : MonoBehaviour
 
     // variables used to limit camera movement point 
 
-        private float[] LEVEL1LIMITS = new float[4] { 120,285,60, 55};
-        private float[] LEVEL2LIMITS = new float[4] { 120,450,60,-55};
+        private float[] LEVEL1LIMITS = new float[4] { 100, 285, 60,  50 };
+        private float[] LEVEL2LIMITS = new float[4] { 100, 100, 60, -55 };
+        private float[] LEVEL3LIMITS = new float[4] { 100, 450, 60,  50 };
+        private float[] LEVEL4LIMITS = new float[4] { 120, 450, 60, -55 };
 
     public float leftLimit;
     public float rightLimit;
@@ -36,21 +38,37 @@ public class SmoothFollow : MonoBehaviour
 
     public void SetCameraLimits(int i)
     {
-        if(i == 1 || i == 2)
-        {
-            leftLimit = LEVEL1LIMITS[0];
-            rightLimit = LEVEL1LIMITS[1];
-            topLimit = LEVEL1LIMITS[2];
-            bottomLimit = LEVEL1LIMITS[3];
-        }
-        else if(i == 0)
-        {
-            leftLimit = LEVEL2LIMITS[0];
-            rightLimit = LEVEL2LIMITS[1];
-            topLimit = LEVEL2LIMITS[2];
-            bottomLimit = LEVEL2LIMITS[3];
-        }
 
+        switch (i)
+        {
+
+            case 1:
+                leftLimit = LEVEL1LIMITS[0];
+                rightLimit = LEVEL1LIMITS[1];
+                topLimit = LEVEL1LIMITS[2];
+                bottomLimit = LEVEL1LIMITS[3];
+                break;
+            case 2:
+                leftLimit = LEVEL2LIMITS[0];
+                rightLimit = LEVEL2LIMITS[1];
+                topLimit = LEVEL2LIMITS[2];
+                bottomLimit = LEVEL2LIMITS[3];
+                break;
+            case 3:
+                leftLimit = LEVEL3LIMITS[0];
+                rightLimit = LEVEL3LIMITS[1];
+                topLimit = LEVEL3LIMITS[2];
+                bottomLimit = LEVEL3LIMITS[3];
+                break;
+            case 4:
+                leftLimit = LEVEL4LIMITS[0];
+                rightLimit = LEVEL4LIMITS[1];
+                topLimit = LEVEL4LIMITS[2];
+                bottomLimit = LEVEL4LIMITS[3];
+                break;
+            default:
+                break;
+        }
 
     }
 	
