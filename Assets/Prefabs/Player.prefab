@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114830609920949150}
   - component: {fileID: 95343499114789810}
   - component: {fileID: 198450802005763186}
+  - component: {fileID: 114278387368595626}
   - component: {fileID: 199580378631953364}
   m_Layer: 11
   m_Name: Player
@@ -42,13 +43,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1390999453787690}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.382492, y: 46.560562, z: 0}
+  m_LocalRotation: {x: -0.0016580354, y: -0.99999857, z: -0.0000005784111, w: -0.0003488528}
+  m_LocalPosition: {x: -215.42502, y: 62.283936, z: 0}
   m_LocalScale: {x: 2.4056208, y: 2.784786, z: 1.3759336}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.04, z: 0.19}
 --- !u!50 &50374889992193368
 Rigidbody2D:
   serializedVersion: 4
@@ -121,6 +122,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94a903581bae7694188d52530d9270af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114278387368595626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1390999453787690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ccda377b49c4c06bdffb10eae21cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114497325343600736

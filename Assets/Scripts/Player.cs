@@ -22,12 +22,16 @@ public class Player : MonoBehaviour {
 	public float gravity;
 	float maxJumpVelocity;
 	float minJumpVelocity;
-	Vector3 velocity;
+
+    [HideInInspector]
+	public Vector3 velocity;
+
 	float velocityXSmoothing;
 
 	Controller2D controller;
 
-	Vector2 directionalInput;
+    [HideInInspector]
+    public Vector2 directionalInput;
 	bool wallSliding;
 	int wallDirX;
 
