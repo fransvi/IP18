@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
@@ -9,6 +10,8 @@ public class GameController : MonoBehaviour {
     public List<float> BlockTimeCounter;
     public List<int> BlockFrameCounter;
 
+    public Text deathCounterText;
+
     public GameObject spawnPoint;
     public GameObject playerPrefab;
     public GameObject[] stages;
@@ -16,6 +19,8 @@ public class GameController : MonoBehaviour {
 
     private bool playerAlive = false;
     private GameObject currentPlayer;
+
+    private int timesDied = 0;
 
     private int currentStage;
 
@@ -77,9 +82,13 @@ public class GameController : MonoBehaviour {
     {
         UpdateActivationSequences();
     }
+
+    //Used when player dies to increase death count
     public void PlayerDead()
     {
         StartCoroutine(WaitForRespawn());
+        timesDied += 1;
+        deathCounterText.text = "Times died : " + timesDied;
         //currentPlayer.GetComponent<ParticleSystem>().Play();
     }
 
@@ -104,14 +113,23 @@ public class GameController : MonoBehaviour {
 
 
 
-    // Set active the current stage player is in
+    // Advance the game to next level and respawn the player on the stage.
     public void NextStage()
+    {
+
+        StartCoroutine(StageChange());
+        
+    }
+
+    IEnumerator StageChange()
     {
         currentStage += 1;
         Debug.Log("Stage change to " + currentStage);
-        for(int i = 0; i < stages.Length; ++i)
+        GetComponent<AutoFade>().BeginFade(1);
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < stages.Length; ++i)
         {
-            if(i == currentStage)
+            if (i == currentStage)
             {
                 stages[i].SetActive(true);
             }
@@ -122,9 +140,12 @@ public class GameController : MonoBehaviour {
         }
         UpdateActivationSequences();
         RespawnPlayer();
+        GetComponent<AutoFade>().BeginFade(-1);
+        yield return new WaitForSeconds(0.5f);
+        
     }
 
-    // Respawn the player and adjust the camera back to player
+    // Respawn the player and adjust the camera back to player and set camera limits for current stage
     public void RespawnPlayer()
     {
         if (!playerAlive)
@@ -132,8 +153,8 @@ public class GameController : MonoBehaviour {
             spawnPoint = stages[currentStage].transform.GetChild(0).gameObject;
             GameObject player = (GameObject)Instantiate(playerPrefab, spawnPoint.gameObject.transform.position, spawnPoint.gameObject.transform.rotation);
             currentPlayer = player;
-            camera.GetComponent<SmoothFollow>().SetPlayer(player.gameObject);
             camera.GetComponent<SmoothFollow>().SetCameraLimits(currentStage);
+            camera.GetComponent<SmoothFollow>().SetPlayer(player.gameObject);
             playerAlive = true;
         }
 

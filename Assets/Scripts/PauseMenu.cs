@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject pauseMenuUI;
     public GameObject startMenuUI;
     public GameObject gameController;
+    public GameObject hudUI;
 
 	void Update () {
 
@@ -29,6 +30,14 @@ public class PauseMenu : MonoBehaviour {
             {
                 Pause();
             }
+        }
+        if( GameStarted && !GamePaused)
+        {
+            hudUI.SetActive(true);
+        }
+        else
+        {
+            hudUI.SetActive(false);
         }
 		
 	}
@@ -56,6 +65,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void QuitGame()
     {
-        Debug.Log("Game Quit...");
+        //closing the game for demo not for final version
+        Application.Quit();
     }
 }

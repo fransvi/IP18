@@ -12,13 +12,16 @@ public class SmoothFollow : MonoBehaviour
 	public Vector3 cameraOffset;
 	public bool useFixedUpdate = false;
     public bool playerSet = false;
-
+     
     // variables used to limit camera movement point 
 
-        private float[] LEVEL1LIMITS = new float[4] { 100, 285, 60,  50 };
-        private float[] LEVEL2LIMITS = new float[4] { 100, 100, 60, -55 };
-        private float[] LEVEL3LIMITS = new float[4] { 100, 450, 60,  50 };
-        private float[] LEVEL4LIMITS = new float[4] { 120, 450, 60, -55 };
+    //Cameralimits currently xy (left,right,top,bottom)
+    public float[] currentLimits = new float[4] { 0, 0, 0, 0 };
+
+    private float[] LEVEL1LIMITS = new float[4] { 100, 170, 60,  50 };
+    private float[] LEVEL2LIMITS = new float[4] { 100, 100, 60, 60};
+    private float[] LEVEL3LIMITS = new float[4] { 100, 105, 60,  50 };
+    private float[] LEVEL4LIMITS = new float[4] { 80, 485, 60, -60 };
 
     public float leftLimit;
     public float rightLimit;
@@ -41,30 +44,17 @@ public class SmoothFollow : MonoBehaviour
 
         switch (i)
         {
-
+            case 0:
+                currentLimits = LEVEL1LIMITS;
+                break;
             case 1:
-                leftLimit = LEVEL1LIMITS[0];
-                rightLimit = LEVEL1LIMITS[1];
-                topLimit = LEVEL1LIMITS[2];
-                bottomLimit = LEVEL1LIMITS[3];
+                currentLimits = LEVEL2LIMITS;
                 break;
             case 2:
-                leftLimit = LEVEL2LIMITS[0];
-                rightLimit = LEVEL2LIMITS[1];
-                topLimit = LEVEL2LIMITS[2];
-                bottomLimit = LEVEL2LIMITS[3];
+                currentLimits = LEVEL3LIMITS;
                 break;
             case 3:
-                leftLimit = LEVEL3LIMITS[0];
-                rightLimit = LEVEL3LIMITS[1];
-                topLimit = LEVEL3LIMITS[2];
-                bottomLimit = LEVEL3LIMITS[3];
-                break;
-            case 4:
-                leftLimit = LEVEL4LIMITS[0];
-                rightLimit = LEVEL4LIMITS[1];
-                topLimit = LEVEL4LIMITS[2];
-                bottomLimit = LEVEL4LIMITS[3];
+                currentLimits = LEVEL4LIMITS;
                 break;
             default:
                 break;
@@ -94,14 +84,14 @@ public class SmoothFollow : MonoBehaviour
 	}
 
 
-    //Update camera position on the player
+    //Update camera position on the player and limit the camera limits on level
 	void updateCameraPosition()
 	{
         Vector3 fixedPos = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.y);
         fixedPos.z = transform.position.z;
         transform.position = Vector3.SmoothDamp(transform.position, target.position - new Vector3(0,0,20), ref _smoothDampVelocity, smoothDampTime);
        // transform.position = Vector3.Lerp(transform.position, fixedPos, Time.deltaTime * Mathf.Clamp((fixedPos - transform.position).sqrMagnitude * 8, .1f, 5));
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, leftLimit, rightLimit), Mathf.Clamp(transform.position.y, bottomLimit, topLimit), transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, currentLimits[0], currentLimits[1]), Mathf.Clamp(transform.position.y, currentLimits[3], currentLimits[2]), transform.position.z);
         originalCameraPosition = transform.position;
     }
 	

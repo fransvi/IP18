@@ -12,20 +12,21 @@ public class TriggerScript : MonoBehaviour {
     {
         gameController = GameObject.Find("GameController");
     }
+    
 
+    //Handle all the collisions player does, with spikes and goal for respawning or level change.
     private void OnTriggerEnter2D(Collider2D col)
     {
 
             if (col.gameObject.layer == LayerMask.NameToLayer("Spike"))
             {
                 
-                gameController.GetComponent<GameController>().PlayerDead();
-            GameObject[] clones = GameObject.FindGameObjectsWithTag("Player");
+                 GameObject[] clones = GameObject.FindGameObjectsWithTag("Player");
             foreach(GameObject clone in clones)
             {
-                Destroy(clone);
+              Destroy(clone);
             }
-            gameController.GetComponent<GameController>().PlayerDead();
+                gameController.GetComponent<GameController>().PlayerDead();
             }
 
 
