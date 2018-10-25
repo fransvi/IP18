@@ -2694,7 +2694,7 @@ GameObject:
   - component: {fileID: 109892420}
   m_Layer: 12
   m_Name: Sequence_Block (4)
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2725,7 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000000000010100
+  Sequence: 00000000000000010101
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!114 &109892421
@@ -3752,7 +3752,7 @@ GameObject:
   - component: {fileID: 152903376}
   m_Layer: 12
   m_Name: Sequence_Block (5)
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3783,7 +3783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000000000000101
+  Sequence: 00000000000000010101
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!114 &152903377
@@ -6543,7 +6543,7 @@ GameObject:
   - component: {fileID: 275371371}
   m_Layer: 12
   m_Name: Sequence_Block (3)
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6574,7 +6574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000000101000000
+  Sequence: 00000000010101010000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!114 &275371372
@@ -8927,7 +8927,7 @@ GameObject:
   - component: {fileID: 341142076}
   m_Layer: 12
   m_Name: Sequence_Block
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10723,7 +10723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 01010000000000000000
+  Sequence: 01010101000000000000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!1001 &390434492
@@ -16539,6 +16539,10 @@ Prefab:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 479942710}
+    - target: {fileID: 1839560031468016, guid: 43dee1e7f99bd114e853dae71c73972d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43dee1e7f99bd114e853dae71c73972d, type: 2}
   m_IsPrefabAsset: 0
@@ -16835,7 +16839,7 @@ GameObject:
   - component: {fileID: 676150872}
   m_Layer: 12
   m_Name: Sequence_Block (1)
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16866,7 +16870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000101010000000000
+  Sequence: 00000001010101000000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!114 &676150873
@@ -20272,7 +20276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000000000000000
+  Sequence: 00000101010100000000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!1 &795237804
@@ -21904,7 +21908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000101000000000000
+  Sequence: 00010101000000000000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!1 &925070409
@@ -23487,7 +23491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000000001000000
+  Sequence: 00000000010101010000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!1 &1002148423
@@ -26517,6 +26521,25 @@ Mesh:
   m_MeshMetrics[0]: 1
   m_MeshMetrics[1]: 1
   m_MeshOptimized: 0
+--- !u!1 &1111032122 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1621684450888428, guid: 76835dd7dc85f1f48a71d441c07501cd,
+    type: 2}
+  m_PrefabInternal: {fileID: 745192093}
+--- !u!114 &1111032127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1111032122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sequence: 00000000000001010101
+  SecondsPerFrame: 0.5
+  AnimationDuration: 0.3
 --- !u!1 &1115472082
 GameObject:
   m_ObjectHideFlags: 0
@@ -29051,7 +29074,7 @@ GameObject:
   - component: {fileID: 1187588847}
   m_Layer: 12
   m_Name: Sequence_Block (7)
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29082,7 +29105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00010000000000000000
+  Sequence: 00000000000101010100
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!114 &1187588848
@@ -30185,7 +30208,7 @@ GameObject:
   - component: {fileID: 1237820112}
   m_Layer: 12
   m_Name: Sequence_Block (2)
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30216,7 +30239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000010100010000
+  Sequence: 00000000010101010000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!114 &1237820113
@@ -33439,7 +33462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 01010000000000000000
+  Sequence: 01010100000000000000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!1 &1329695031
@@ -33918,6 +33941,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1342355845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1886167407306006, guid: 76835dd7dc85f1f48a71d441c07501cd,
+    type: 2}
+  m_PrefabInternal: {fileID: 745192093}
+--- !u!114 &1342355850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1342355845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sequence: 00000000000101010000
+  SecondsPerFrame: 0.5
+  AnimationDuration: 0.3
 --- !u!1001 &1346717113
 Prefab:
   m_ObjectHideFlags: 0
@@ -45114,7 +45156,7 @@ GameObject:
   - component: {fileID: 1801867834}
   m_Layer: 12
   m_Name: Sequence_Block (6)
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45145,7 +45187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 01000000000000000000
+  Sequence: 01010100000000000000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!114 &1801867835
@@ -51608,7 +51650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000000000000001
+  Sequence: 00000000010101010000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!1 &2042641900
@@ -51912,7 +51954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000000000010100
+  Sequence: 00000000000101010100
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!1 &2050247036
@@ -52669,7 +52711,7 @@ GameObject:
   - component: {fileID: 2066472556}
   m_Layer: 12
   m_Name: Sequence_Block (8)
-  m_TagString: Untagged
+  m_TagString: Dynamic Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52700,7 +52742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000001000000000000
+  Sequence: 00000000000001010101
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!114 &2066472557
@@ -54514,7 +54556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ff365f343a9d54c90d6b00bab7efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence: 00000000010100000000
+  Sequence: 00000101010100000000
   SecondsPerFrame: 0.5
   AnimationDuration: 0.3
 --- !u!1 &2134542616
