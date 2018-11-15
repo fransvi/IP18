@@ -70,6 +70,8 @@ public class SmoothFollow : MonoBehaviour
             if (!useFixedUpdate)
                 updateCameraPosition();
         }
+        
+        if(!target) return;
 	}
 
 
@@ -87,6 +89,7 @@ public class SmoothFollow : MonoBehaviour
     //Update camera position on the player and limit the camera limits on level
 	void updateCameraPosition()
 	{
+        if(!target) return;
         Vector3 fixedPos = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.y);
         fixedPos.z = transform.position.z;
         transform.position = Vector3.SmoothDamp(transform.position, target.position - new Vector3(0,0,20), ref _smoothDampVelocity, smoothDampTime);
