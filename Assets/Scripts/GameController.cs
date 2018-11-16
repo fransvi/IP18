@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour {
     public List<int> BlockFrameCounter;
 
     public Text deathCounterText;
+    public Text timerText;
+
+    public float gameTime;
 
     public GameObject spawnPoint;
     public GameObject playerPrefab;
@@ -68,14 +71,42 @@ public class GameController : MonoBehaviour {
     void Update()
     {
         PollActivationSequences();
-        
+        GameTimer();
+
+    }
+
+ 
+
+    void GameTimer()
+    {
+        gameTime += Time.deltaTime;
+        int minutes = Mathf.FloorToInt(gameTime / 60F);
+        int seconds = Mathf.FloorToInt(gameTime - minutes * 60);
+        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+        timerText.text = "Time: " + niceTime;
+    }
+    public void SetCurrentStage(int i)
+    {
+        currentStage = i;
     }
 
     public void StartGame()
     {
+        Destroy(currentPlayer);
+        playerAlive = false;
+        for (int i = 0; i < stages.Length; ++i)
+        {
+            if (i == currentStage)
+            {
+                stages[i].SetActive(true);
+            }
+            else
+            {
+                stages[i].SetActive(false);
+            }
+        }
         UpdateActivationSequences();
         RespawnPlayer();
-        currentStage = 0;
     }
 
     public void Start()
@@ -89,6 +120,7 @@ public class GameController : MonoBehaviour {
         StartCoroutine(WaitForRespawn());
         timesDied += 1;
         deathCounterText.text = "Times died : " + timesDied;
+        
         //currentPlayer.GetComponent<ParticleSystem>().Play();
     }
 

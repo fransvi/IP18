@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject startMenuUI;
     public GameObject gameController;
     public GameObject hudUI;
+    public GameObject levelSelectUI;
 
 	void Update () {
 
@@ -41,12 +42,44 @@ public class PauseMenu : MonoBehaviour {
         }
 		
 	}
+    public void StartLevelSelected(int i)
+    {
+        Debug.Log("Starting stage" + i);
+        gameController.GetComponent<GameController>().SetCurrentStage(i);
+        levelSelectUI.SetActive(false);
+        StartGame();
+
+    }
 
     public void StartGame()
     {
         gameController.GetComponent<GameController>().StartGame();
         GameStarted = true;
         startMenuUI.SetActive(false);
+    }
+
+    public void LevelSelectMenuOn(bool b)
+    {
+        if(b)
+        {
+            startMenuUI.SetActive(false);
+            levelSelectUI.SetActive(true);
+        }
+        else
+        {
+            startMenuUI.SetActive(true);
+            levelSelectUI.SetActive(false);
+        }
+
+    }
+
+    public void BackToMainMenu()
+    {
+        pauseMenuUI.SetActive(false);
+        startMenuUI.SetActive(true);
+        Time.timeScale = 1f;
+        GamePaused = false;
+        GameStarted = false;
     }
 
     public void Resume()

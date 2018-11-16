@@ -21,12 +21,13 @@ public class SmoothFollow : MonoBehaviour
     private float[] LEVEL1LIMITS = new float[4] { 100, 170, 60,  50 };
     private float[] LEVEL2LIMITS = new float[4] { 100, 100, 60, 60};
     private float[] LEVEL3LIMITS = new float[4] { 100, 105, 60,  50 };
-    private float[] LEVEL4LIMITS = new float[4] { 80, 485, 60, -60 };
+    private float[] LEVEL4LIMITS = new float[4] { 0, 500, 92, -90 };
+    private float[] LEVEL5LIMITS = new float[4] { 80, 485, 60, -60 };
 
-    public float leftLimit;
-    public float rightLimit;
-    public float topLimit;
-    public float bottomLimit;
+    private float leftLimit;
+    private float rightLimit;
+    private float topLimit;
+    private float bottomLimit;
     Vector3 originalCameraPosition;
 
 	private Vector3 _smoothDampVelocity;
@@ -55,6 +56,9 @@ public class SmoothFollow : MonoBehaviour
                 break;
             case 3:
                 currentLimits = LEVEL4LIMITS;
+                break;
+            case 4:
+                currentLimits = LEVEL5LIMITS;
                 break;
             default:
                 break;

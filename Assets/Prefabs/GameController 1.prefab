@@ -56,10 +56,15 @@ MonoBehaviour:
   DynamicBlocks: []
   BlockTimeCounter: []
   BlockFrameCounter: 
+  deathCounterText: {fileID: 0}
+  timerText: {fileID: 0}
+  gameTime: 0
   spawnPoint: {fileID: 0}
   playerPrefab: {fileID: 1390999453787690, guid: 75347bf8a0df3424299d8c442a1dc73d,
     type: 2}
   stages:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
