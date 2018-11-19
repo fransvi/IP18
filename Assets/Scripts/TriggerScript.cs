@@ -36,25 +36,37 @@ public class TriggerScript : MonoBehaviour {
             if (col.gameObject.layer == LayerMask.NameToLayer("Spike"))
             {
                 
-                 GameObject[] clones = GameObject.FindGameObjectsWithTag("Player");
-            GenerateDeathPrefabs();
-            foreach(GameObject clone in clones)
-            {
-              Destroy(clone);
-            }
+                GameObject[] clones = GameObject.FindGameObjectsWithTag("Player");
+                GenerateDeathPrefabs();
+
+                foreach(GameObject clone in clones)
+                {
+                  Destroy(clone);
+                }
                 gameController.GetComponent<GameController>().PlayerDead();
             }
 
 
             if (col.gameObject.layer == LayerMask.NameToLayer("Goal"))
             {
-            gameController.GetComponent<GameController>().PlayerDead();
-            GameObject[] clones = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject clone in clones)
-            {
-                Destroy(clone);
+                gameController.GetComponent<GameController>().PlayerDead();
+                GameObject[] clones = GameObject.FindGameObjectsWithTag("Player");
+
+                foreach (GameObject clone in clones)
+                {
+                    Destroy(clone);
+                }
+                gameController.GetComponent<GameController>().NextStage();
             }
-            gameController.GetComponent<GameController>().NextStage();
+
+            if (col.gameObject.layer == LayerMask.NameToLayer("Trigger"))
+            {
+                Debug.Log("Entering Trigger");
+                if (col.transform.parent != null)
+                {
+                    col.gameObject.GetComponentInParent<PlatformController>().TriggerBlockMovement();
+                }
+
             }
 
     }

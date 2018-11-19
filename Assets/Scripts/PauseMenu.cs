@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour {
@@ -13,6 +14,8 @@ public class PauseMenu : MonoBehaviour {
     public GameObject gameController;
     public GameObject hudUI;
     public GameObject levelSelectUI;
+    public GameObject gameOverUI;
+    public Text gamerOverUIText;
 
 	void Update () {
 
@@ -72,10 +75,21 @@ public class PauseMenu : MonoBehaviour {
         }
 
     }
+    public void ToGameOverScreen()
+    {
+        gameController.GetComponent<GameController>().DisableAllStages();
+        pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(true);
+        gamerOverUIText.text = "You died "+gameController.GetComponent<GameController>().timesDied+" times and wasted "+ gameController.GetComponent<GameController>().timeFormatted+ " minutes of your life. Thank you for playing!";
+        Time.timeScale = 1f;
+    }
 
     public void BackToMainMenu()
     {
         pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        levelSelectUI.SetActive(false);
+        gameController.GetComponent<GameController>().DisableAllStages();
         startMenuUI.SetActive(true);
         Time.timeScale = 1f;
         GamePaused = false;

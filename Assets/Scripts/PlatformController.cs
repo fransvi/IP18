@@ -12,6 +12,7 @@ public class PlatformController : RaycastController {
 	public float speed;
 	public bool cyclic;
 	public float waitTime;
+
 	[Range(0,2)]
 	public float easeAmount;
 
@@ -19,7 +20,13 @@ public class PlatformController : RaycastController {
 	float percentBetweenWaypoints;
 	float nextMoveTime;
 
-	List<PassengerMovement> passengerMovement;
+    //Used in triggering platform movements for certain time
+    public bool moveLocked;
+    public float triggerMovementTime;
+    public float triggerCooldown;
+    bool triggerActivated = false;
+
+    List<PassengerMovement> passengerMovement;
 	Dictionary<Transform,Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
 	
 	public override void Start () {
@@ -31,17 +38,48 @@ public class PlatformController : RaycastController {
 		}
 	}
 
+    public void TriggerBlockMovement()
+    {
+        if(!triggerActivated)
+        {
+            StartCoroutine("TriggerBlockMovementCoroutine");
+            StartCoroutine("TriggerCooldownTimer");
+        }
+
+
+    }
+    private IEnumerator TriggerCooldownTimer()
+    {
+        triggerActivated = true;
+        yield return new WaitForSeconds(triggerCooldown);
+        triggerActivated = false;
+
+    }
+
+    private IEnumerator TriggerBlockMovementCoroutine()
+    {
+        moveLocked = false;
+        yield return new WaitForSeconds(triggerMovementTime);
+        moveLocked = true;
+    }
+
 	void Update () {
 
-		UpdateRaycastOrigins ();
 
-		Vector3 velocity = CalculatePlatformMovement();
+        if (!moveLocked) {
+            UpdateRaycastOrigins();
 
-		CalculatePassengerMovement(velocity);
+            Vector3 velocity = CalculatePlatformMovement();
 
-		MovePassengers (true);
-		transform.Translate (velocity);
-		MovePassengers (false);
+            CalculatePassengerMovement(velocity);
+
+            MovePassengers(true);
+            transform.Translate(velocity);
+            MovePassengers(false);
+
+        }
+
+
 	}
 
 	float Ease(float x) {

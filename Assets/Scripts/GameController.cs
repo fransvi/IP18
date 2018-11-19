@@ -23,9 +23,12 @@ public class GameController : MonoBehaviour {
     private bool playerAlive = false;
     private GameObject currentPlayer;
 
-    private int timesDied = 0;
+    public int timesDied = 0;
+    public string timeFormatted;
 
     private int currentStage;
+
+    public GameObject gameUI;
 
     public void UpdateActivationSequences()
 	{
@@ -75,6 +78,15 @@ public class GameController : MonoBehaviour {
 
     }
 
+    public void DisableAllStages()
+    {
+        for(int i = 0; i < stages.Length; i++)
+        {
+            Destroy(currentPlayer);
+            stages[i].SetActive(false);
+        }
+    }
+
  
 
     void GameTimer()
@@ -83,6 +95,7 @@ public class GameController : MonoBehaviour {
         int minutes = Mathf.FloorToInt(gameTime / 60F);
         int seconds = Mathf.FloorToInt(gameTime - minutes * 60);
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+        timeFormatted = niceTime;
         timerText.text = "Time: " + niceTime;
     }
     public void SetCurrentStage(int i)
@@ -111,6 +124,7 @@ public class GameController : MonoBehaviour {
 
     public void Start()
     {
+        gameUI.SetActive(true);
         UpdateActivationSequences();
     }
 
@@ -156,24 +170,33 @@ public class GameController : MonoBehaviour {
     IEnumerator StageChange()
     {
         currentStage += 1;
-        Debug.Log("Stage change to " + currentStage);
-        GetComponent<AutoFade>().BeginFade(1);
-        yield return new WaitForSeconds(0.5f);
-        for (int i = 0; i < stages.Length; ++i)
+        if (currentStage == stages.Length)
         {
-            if (i == currentStage)
-            {
-                stages[i].SetActive(true);
-            }
-            else
-            {
-                stages[i].SetActive(false);
-            }
+            yield return new WaitForSeconds(0.5f);
+            gameUI.GetComponent<PauseMenu>().ToGameOverScreen();
+            yield return new WaitForSeconds(0.5f);
         }
-        UpdateActivationSequences();
-        RespawnPlayer();
-        GetComponent<AutoFade>().BeginFade(-1);
-        yield return new WaitForSeconds(0.5f);
+        else
+        {
+            GetComponent<AutoFade>().BeginFade(1);
+            yield return new WaitForSeconds(0.5f);
+            for (int i = 0; i < stages.Length; ++i)
+            {
+                if (i == currentStage)
+                {
+                    stages[i].SetActive(true);
+                }
+                else
+                {
+                    stages[i].SetActive(false);
+                }
+            }
+            UpdateActivationSequences();
+            RespawnPlayer();
+            GetComponent<AutoFade>().BeginFade(-1);
+            yield return new WaitForSeconds(0.5f);
+        }
+
         
     }
 
