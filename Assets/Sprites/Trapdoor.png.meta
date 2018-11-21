@@ -1,16 +1,14 @@
 fileFormatVersion: 2
-guid: 67291c65e8ebce14d877a415c4568a88
+guid: af885e908d623554c8c1c5c0d610c804
 TextureImporter:
   fileIDToRecycleName:
-    21300000: gingerbread_man_0
-    21300002: gingerbread_man_1
-    21300004: gingerbread_man_2
-    21300006: gingerbread_man_3
-    21300008: gingerbread_pieces_0
-    21300010: gingerbread_pieces_1
-    21300012: gingerbread_pieces_2
-    21300014: gingerbread_pieces_3
-    21300016: gingerbread_pieces_4
+    21300000: Trapdoor_0
+    21300002: Trapdoor_1
+    21300004: Trapdoor_2
+    21300006: Trapdoor_3
+    21300008: Trapdoor_4
+    21300010: Trapdoor_5
+    21300012: Trapdoor_6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -93,33 +91,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gingerbread_pieces_0
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 345
-        width: 98
-        height: 118
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1c18c53974b5364cbbfbd9796404f3c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gingerbread_pieces_1
+      name: Trapdoor_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 186
-        width: 134
-        height: 158
+        y: 2763.4285
+        width: 913
+        height: 460.57144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,19 +105,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12a8c0afa1ee0c64b8784e89b8db7138
+      spriteID: 7f443515a098f4547971cd4f2a886ccc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gingerbread_pieces_2
+      name: Trapdoor_1
       rect:
         serializedVersion: 2
-        x: 135
-        y: 185
-        width: 121
-        height: 159
+        x: 0
+        y: 2303.4285
+        width: 913
+        height: 460.57144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,19 +125,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7bbf0b242c47c74bb39c717f38116c2
+      spriteID: e9bdefddbd849ad4d8eb129e6c1ad636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gingerbread_pieces_3
+      name: Trapdoor_2
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
-        width: 68
-        height: 185
+        x: 0
+        y: 1843.4286
+        width: 913
+        height: 460.57144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,19 +145,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bb6b51d6fac8f7468da9f2dbb2b213c
+      spriteID: 713d41b0c8f214d4b96dfb373d731110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gingerbread_pieces_4
+      name: Trapdoor_3
       rect:
         serializedVersion: 2
-        x: 159
-        y: 16
-        width: 60
-        height: 168
+        x: 0
+        y: 1383.4286
+        width: 913
+        height: 460.57144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,7 +165,67 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 389f7b231a2d5974fa2d3ae319b73645
+      spriteID: c76795ab243e4484589127c74dfef97b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trapdoor_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 923.4286
+        width: 913
+        height: 460.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e78f8009174cb44e96b7b994fc622c5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trapdoor_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 463.42856
+        width: 913
+        height: 460.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a87b0c7000a77dd4ea9a988302a2a865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trapdoor_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3.4285583
+        width: 913
+        height: 460.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f6cf5272e2403458fe622c3d9e262b
       vertices: []
       indices: 
       edges: []
@@ -195,7 +233,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 38b3d52c82ef14d66af2563376f19524
+    spriteID: 599729177e2f3e043a4fb9e0c559effd
     vertices: []
     indices: 
     edges: []
