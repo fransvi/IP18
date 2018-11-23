@@ -22,9 +22,14 @@ public class GameController : MonoBehaviour {
 
     private bool playerAlive = false;
     private GameObject currentPlayer;
+    private BoxCollider2D currentPlayerCollider;
+    private Player currentPlayerScript;
 
     public int timesDied = 0;
     public string timeFormatted;
+
+    public bool KnockBackActive = false;
+    public float KnockBackSpeed = 35f;
 
     private int currentStage;
 
@@ -47,10 +52,10 @@ public class GameController : MonoBehaviour {
                 BlockFrameCounter.Add(0);
 			}
 		}
-        Debug.Log("Updated activation sequences");
+//        Debug.Log("Updated activation sequences");
 	}
 
-    private void PollActivationSequences()
+private void PollActivationSequences()
     {
         for(int i = 0; i < ActivationSequences.Count; ++i)
         {
@@ -65,7 +70,56 @@ public class GameController : MonoBehaviour {
                 {
                     BlockFrameCounter[i] =  0;
                 }
-                //DynamicBlocks[i].SetActive(false);
+                Vector2 currentPlayerPosition = new Vector2();
+                Vector2 blockPosition = new Vector2();
+                if(!currentPlayer) return;
+                currentPlayerPosition.x = currentPlayer.transform.position.x;
+                currentPlayerPosition.y = currentPlayer.transform.position.y;
+                float maxX = 0, maxY = 0, minX = 0, minY = 0;
+                bool y_ok = false, x_ok = false;
+                blockPosition.x = DynamicBlocks[i].transform.position.x;
+                blockPosition.y = DynamicBlocks[i].transform.position.y;
+                PolygonCollider2D blockCollider = DynamicBlocks[i].GetComponent<PolygonCollider2D>(); 
+                if(blockCollider.points.Length >= 3)
+                {
+                    foreach(Vector2 p in blockCollider.points)
+                    {
+                        if(p.x < minX) minX = p.x;
+                        if(p.y < minY) minY = p.y;
+                    }
+                    foreach(Vector2 p in blockCollider.points)
+                    {
+                        if(p.x > maxX) maxX = p.x;
+                        if(p.y > maxY) maxY = p.y;
+                    }
+                    if(currentPlayerPosition.x >= blockPosition.x + minX || currentPlayerPosition.x + currentPlayerCollider.size.x >= blockPosition.x + minX)
+                        if(currentPlayerPosition.x < blockPosition.x + maxX || currentPlayerPosition.x + currentPlayerCollider.size.x < blockPosition.x + maxX)
+                            x_ok = true;
+                    if(x_ok) 
+                        if(currentPlayerPosition.y >= blockPosition.y + minY || currentPlayerPosition.y + currentPlayerCollider.size.y >= blockPosition.y + minY)
+                            if(currentPlayerPosition.y < blockPosition.y + maxY || currentPlayerPosition.y + currentPlayerCollider.size.y < blockPosition.y + maxY)
+                                y_ok = true;    
+                }
+                if(sequence[BlockFrameCounter[i]] == true)
+                {
+                    if(x_ok && y_ok)
+                    {
+//                        Debug.Log("Pushing player back...");
+                        Vector2 currentPlayerMiddlePoint = new Vector2(currentPlayerPosition.x + (currentPlayerCollider.size.x / 2f), currentPlayerPosition.y + (currentPlayerCollider.size.y / 2f));
+                        Vector2 currentBlockMiddlePoint = new Vector2(blockPosition.x + (maxX / 2f), blockPosition.y + (maxY / 2f));
+                        
+                        Vector2 dir = currentPlayerMiddlePoint - currentBlockMiddlePoint;
+                        
+                        dir /= dir.magnitude;
+  //                      Debug.Log("Direction " + dir + " dir mag " + dir.magnitude);
+                        currentPlayerScript.KnockBackActive = true;
+                        currentPlayer.transform.Translate(dir * KnockBackSpeed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        currentPlayerScript.KnockBackActive = false;
+                    }
+                }
                 DynamicBlocks[i].SetActive(sequence[BlockFrameCounter[i]]);
             }
         }
@@ -208,6 +262,8 @@ public class GameController : MonoBehaviour {
             spawnPoint = stages[currentStage].transform.GetChild(0).gameObject;
             GameObject player = (GameObject)Instantiate(playerPrefab, spawnPoint.gameObject.transform.position, spawnPoint.gameObject.transform.rotation);
             currentPlayer = player;
+            currentPlayerScript = player.GetComponent<Player>();
+            currentPlayerCollider = currentPlayer.GetComponent<BoxCollider2D>();
             camera.GetComponent<SmoothFollow>().SetCameraLimits(currentStage);
             camera.GetComponent<SmoothFollow>().SetPlayer(player.gameObject);
             playerAlive = true;

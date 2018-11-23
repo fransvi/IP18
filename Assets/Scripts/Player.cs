@@ -33,6 +33,7 @@ public class Player : MonoBehaviour {
     [HideInInspector]
     public Vector2 directionalInput;
 	bool wallSliding;
+	public bool KnockBackActive = false;
 	int wallDirX;
 
 	void Start() {
@@ -46,7 +47,6 @@ public class Player : MonoBehaviour {
 	void Update() {
 		CalculateVelocity ();
 		HandleWallSliding ();
-
 		controller.Move (velocity * Time.deltaTime, directionalInput);
 
 		if (controller.collisions.above || controller.collisions.below) {
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void OnJumpInputDown() {
+		if(KnockBackActive == true) return; 
 		if (wallSliding) {
 			if (wallDirX == directionalInput.x) {
 				velocity.x = -wallDirX * wallJumpClimb.x;
