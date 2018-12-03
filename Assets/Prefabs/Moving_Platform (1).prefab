@@ -143,6 +143,9 @@ MonoBehaviour:
   cyclic: 1
   waitTime: 0
   easeAmount: 0
+  moveLocked: 0
+  triggerMovementTime: 0
+  triggerCooldown: 0
 --- !u!114 &114641096281926312
 MonoBehaviour:
   m_ObjectHideFlags: 1
