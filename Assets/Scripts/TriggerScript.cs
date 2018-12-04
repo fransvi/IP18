@@ -16,7 +16,7 @@ public class TriggerScript : MonoBehaviour {
         gameController = GameObject.Find("GameController");
     }
     
-
+    //Generates sprites when player dies
     private void GenerateDeathPrefabs()
     {
         for(int i = 0; i < deathPieceSprites.Length; i++)
@@ -32,20 +32,21 @@ public class TriggerScript : MonoBehaviour {
     //Handle all the collisions player does, with spikes and goal for respawning or level change.
     private void OnTriggerEnter2D(Collider2D col)
     {
-
+        
             if (col.gameObject.layer == LayerMask.NameToLayer("Spike"))
             {
                 
+
+                
                 GameObject[] clones = GameObject.FindGameObjectsWithTag("Player");
                 GenerateDeathPrefabs();
-
+                //--Sound effect placeholder (player death)--
                 foreach(GameObject clone in clones)
                 {
                   Destroy(clone);
                 }
                 gameController.GetComponent<GameController>().PlayerDead();
             }
-
 
             if (col.gameObject.layer == LayerMask.NameToLayer("Goal"))
             {

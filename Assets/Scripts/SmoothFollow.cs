@@ -20,9 +20,9 @@ public class SmoothFollow : MonoBehaviour
 
     private float[] LEVEL1LIMITS = new float[4] { 100, 170, 60,  50 };
     private float[] LEVEL2LIMITS = new float[4] { 100, 100, 60, 60};
-    private float[] LEVEL3LIMITS = new float[4] { 100, 105, 60,  50 };
-    private float[] LEVEL4LIMITS = new float[4] { 0, 500, 92, -90 };
-    private float[] LEVEL5LIMITS = new float[4] { 80, 485, 60, -60 };
+    private float[] LEVEL3LIMITS = new float[4] { 80, 485, 60, -60 };
+    private float[] LEVEL4LIMITS = new float[4] { 100, 105, 60, 50 };
+    private float[] LEVEL5LIMITS = new float[4] { 0, 500, 92, -90 };
 
     private float leftLimit;
     private float rightLimit;

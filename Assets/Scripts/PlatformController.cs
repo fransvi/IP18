@@ -38,6 +38,8 @@ public class PlatformController : RaycastController {
 		}
 	}
 
+
+    //Used with triggered platforms when the platform is not activated
     public void TriggerBlockMovement()
     {
         if(!triggerActivated)

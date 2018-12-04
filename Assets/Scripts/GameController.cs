@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour {
                 BlockFrameCounter.Add(0);
 			}
 		}
-//        Debug.Log("Updated activation sequences");
 	}
 
 private void PollActivationSequences()
@@ -104,14 +103,12 @@ private void PollActivationSequences()
                 {
                     if(x_ok && y_ok)
                     {
-//                        Debug.Log("Pushing player back...");
                         Vector2 currentPlayerMiddlePoint = new Vector2(currentPlayerPosition.x + (currentPlayerCollider.size.x / 2f), currentPlayerPosition.y + (currentPlayerCollider.size.y / 2f));
                         Vector2 currentBlockMiddlePoint = new Vector2(blockPosition.x + (maxX / 2f), blockPosition.y + (maxY / 2f));
                         
                         Vector2 dir = currentPlayerMiddlePoint - currentBlockMiddlePoint;
                         
                         dir /= dir.magnitude;
-  //                      Debug.Log("Direction " + dir + " dir mag " + dir.magnitude);
                         currentPlayerScript.KnockBackActive = true;
                         currentPlayer.transform.Translate(dir * KnockBackSpeed * Time.deltaTime);
                     }
@@ -132,6 +129,7 @@ private void PollActivationSequences()
 
     }
 
+    //Disable all stages gameobjects, used when returning to menu
     public void DisableAllStages()
     {
         for(int i = 0; i < stages.Length; i++)
@@ -142,7 +140,7 @@ private void PollActivationSequences()
     }
 
  
-
+    //Get gametime and format it into a more nice form
     void GameTimer()
     {
         gameTime += Time.deltaTime;
@@ -189,7 +187,6 @@ private void PollActivationSequences()
         timesDied += 1;
         deathCounterText.text = "Times died : " + timesDied;
         
-        //currentPlayer.GetComponent<ParticleSystem>().Play();
     }
 
 
@@ -197,6 +194,7 @@ private void PollActivationSequences()
     IEnumerator WaitForRespawn()
     {
         playerAlive = false;
+        yield return new WaitForSeconds(0.5f);
         GetComponent<AutoFade>().BeginFade(1);
         yield return new WaitForSeconds(0.5f);
         camera.GetComponent<SmoothFollow>().SetPlayer(spawnPoint);
@@ -205,6 +203,7 @@ private void PollActivationSequences()
         RespawnPlayer();
     }
 
+    //Reload the current stage and reset block activation sequences
     public void ReloadStage()
     {
         UpdateActivationSequences();
@@ -221,6 +220,8 @@ private void PollActivationSequences()
         
     }
 
+
+    //Increases the stage count by one and loads the next stage
     IEnumerator StageChange()
     {
         currentStage += 1;

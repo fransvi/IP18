@@ -15,7 +15,8 @@ public class PlayerInput : MonoBehaviour {
 		player.SetDirectionalInput (directionalInput);
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			player.OnJumpInputDown ();
+            //--Sound effect placeholder (player jump)--
+            player.OnJumpInputDown ();
 		}
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			player.OnJumpInputUp ();
