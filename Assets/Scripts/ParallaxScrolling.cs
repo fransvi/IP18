@@ -18,7 +18,7 @@ public class ParallaxScrolling : MonoBehaviour
         cam = Camera.main.transform;
     }
 
-    // Use this for initialization
+    // Initiate the parallax backgrounds on start
     void Start()
     {
         previousCamPos = cam.position;
@@ -32,7 +32,7 @@ public class ParallaxScrolling : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // Move parallax backgrounds according to player movement
     void Update()
     {
 

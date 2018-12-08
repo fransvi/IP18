@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject gameOverUI;
     public Text gamerOverUIText;
 
+    //General character controls
 	void Update () {
 
         if(Input.GetKeyDown(KeyCode.O))
@@ -24,7 +25,7 @@ public class PauseMenu : MonoBehaviour {
             StartGame();
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) && GameStarted)
+        if(Input.GetKeyDown(KeyCode.Escape) && GameStarted && gameController.GetComponent<GameController>().playerAlive)
         {
             if (GamePaused)
             {
@@ -47,7 +48,6 @@ public class PauseMenu : MonoBehaviour {
 	}
     public void StartLevelSelected(int i)
     {
-        Debug.Log("Starting stage" + i);
         gameController.GetComponent<GameController>().SetCurrentStage(i);
         levelSelectUI.SetActive(false);
         StartGame();
@@ -61,6 +61,7 @@ public class PauseMenu : MonoBehaviour {
         startMenuUI.SetActive(false);
     }
 
+    //Enable level select menu
     public void LevelSelectMenuOn(bool b)
     {
         if(b)
@@ -75,6 +76,7 @@ public class PauseMenu : MonoBehaviour {
         }
 
     }
+    //Loaded after finishing the last tage
     public void ToGameOverScreen()
     {
         gameController.GetComponent<GameController>().DisableAllStages();
@@ -84,6 +86,7 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 1f;
     }
 
+    //Disable all stages and clear player prefabs for loading the menu
     public void BackToMainMenu()
     {
         pauseMenuUI.SetActive(false);
@@ -96,6 +99,7 @@ public class PauseMenu : MonoBehaviour {
         GameStarted = false;
     }
 
+    //Resume paused game
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -103,6 +107,7 @@ public class PauseMenu : MonoBehaviour {
         GamePaused = false;
     }
 
+    //Pause the game
     void Pause()
     {
         pauseMenuUI.SetActive(true);

@@ -14,7 +14,6 @@ public class SmoothFollow : MonoBehaviour
     public bool playerSet = false;
      
     // variables used to limit camera movement point 
-
     //Cameralimits currently xy (left,right,top,bottom)
     public float[] currentLimits = new float[4] { 0, 0, 0, 0 };
 
@@ -97,7 +96,6 @@ public class SmoothFollow : MonoBehaviour
         Vector3 fixedPos = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.y);
         fixedPos.z = transform.position.z;
         transform.position = Vector3.SmoothDamp(transform.position, target.position - new Vector3(0,0,20), ref _smoothDampVelocity, smoothDampTime);
-       // transform.position = Vector3.Lerp(transform.position, fixedPos, Time.deltaTime * Mathf.Clamp((fixedPos - transform.position).sqrMagnitude * 8, .1f, 5));
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, currentLimits[0], currentLimits[1]), Mathf.Clamp(transform.position.y, currentLimits[3], currentLimits[2]), transform.position.z);
         originalCameraPosition = transform.position;
     }

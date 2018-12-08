@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50067445719886586}
   m_Layer: 16
   m_Name: PlayerPiece
-  m_TagString: Untagged
+  m_TagString: DeathPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1, y: 1.05}
+    oldSize: {x: 0.98, y: 1.18}
     newSize: {x: 1.1, y: 1.05}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour {
     public GameObject[] stages;
     public Camera camera;
 
-    private bool playerAlive = false;
+    public bool playerAlive = false;
     private GameObject currentPlayer;
     private BoxCollider2D currentPlayerCollider;
     private Player currentPlayerScript;
@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour {
 
     public GameObject gameUI;
 
+    // Reset appearing blocks for each level load
     public void UpdateActivationSequences()
 	{
 		GameObject [] allDynamicBlocks = GameObject.FindGameObjectsWithTag("Dynamic Block");
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+    // Used to create appering block puzzles
 private void PollActivationSequences()
     {
         for(int i = 0; i < ActivationSequences.Count; ++i)
@@ -137,6 +139,7 @@ private void PollActivationSequences()
             Destroy(currentPlayer);
             stages[i].SetActive(false);
         }
+        currentPlayer.GetComponent<TriggerScript>().ClearAllDeathPrefabs();
     }
 
  
@@ -201,6 +204,7 @@ private void PollActivationSequences()
         GetComponent<AutoFade>().BeginFade(-1);
         yield return new WaitForSeconds(0.5f);
         RespawnPlayer();
+        camera.GetComponent<SmoothFollow>().SetPlayer(currentPlayer);
     }
 
     //Reload the current stage and reset block activation sequences
@@ -265,6 +269,7 @@ private void PollActivationSequences()
             currentPlayer = player;
             currentPlayerScript = player.GetComponent<Player>();
             currentPlayerCollider = currentPlayer.GetComponent<BoxCollider2D>();
+            Debug.Log("Setting camera limits" + currentStage);
             camera.GetComponent<SmoothFollow>().SetCameraLimits(currentStage);
             camera.GetComponent<SmoothFollow>().SetPlayer(player.gameObject);
             playerAlive = true;

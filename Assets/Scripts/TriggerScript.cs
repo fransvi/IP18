@@ -9,6 +9,7 @@ public class TriggerScript : MonoBehaviour {
     public Sprite[] deathPieceSprites;
     public GameObject deathPiece;
     public GameObject prefabSpawnPoint;
+    public List<GameObject> activeDeathPieceClones;
 
 
     private void Start()
@@ -25,7 +26,18 @@ public class TriggerScript : MonoBehaviour {
             piece.gameObject.transform.Rotate(0.0f, 0.0f, Random.Range(0.0f, 360.0f));
             piece.GetComponent<SpriteRenderer>().sprite = deathPieceSprites[i];
             piece.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(10f, -10f), Random.Range(-25f, -50f));
+            activeDeathPieceClones.Add(piece);
             Destroy(piece, 10f);
+        }
+    }
+
+    //Delete all existing player death prefabs
+    public void ClearAllDeathPrefabs()
+    {
+        GameObject[] clones = GameObject.FindGameObjectsWithTag("DeathPrefab");
+        foreach(GameObject clone in clones)
+        {
+            Destroy(clone);
         }
     }
 
